@@ -12,7 +12,7 @@ model = project.version(1).model
 
 
 def predict(path):
-    prediction = model.predict(path, confidence=25, overlap=50)
+    prediction = model.predict(path, confidence=20, overlap=50)
     with open('predictions/'+path.replace('.png','.json'), 'w') as f:
         json.dump(prediction.json(), f)
 
