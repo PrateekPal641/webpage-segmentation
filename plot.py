@@ -19,7 +19,7 @@ def filter_boxes(predictions):
 
 
 def draw(path):
-    image = cv2.imread(path)
+    image = cv2.imread(path, cv2.IMREAD_COLOR)
     with open('predictions/'+path.replace('.png', '.json'), 'r') as f:
         content = json.load(f)
     filtered_predictions = filter_boxes(content['predictions'])
