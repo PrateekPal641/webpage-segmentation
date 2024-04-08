@@ -4,7 +4,7 @@ import numpy as np
 import json
 from roboflow import Roboflow
 from plot import draw
-
+from vision import fill_context_with_vision
 
 rf = Roboflow(api_key="PEqyGZLD9xRGI4nxbZez")
 project = rf.workspace("segmentation").project("blocksegment")
@@ -31,6 +31,9 @@ if uploaded_file is not None:
     st.image('image.png', caption='Original Image')
     predict('image.png')
     draw('image.png')
-
     st.image('results/image.png', caption='Segmented Image')
+    mapping = json.loads(fill_context_with_vision('results/image.png'))
+    st.json(mapping)
+
+
 
