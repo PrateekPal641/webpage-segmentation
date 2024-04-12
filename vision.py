@@ -1,7 +1,7 @@
 import requests
 import re
 import base64
-
+import streamlit as st
 def convert_image_to_base64(image_path):
     with open(image_path, "rb") as image_file:
         # Read the file
@@ -20,7 +20,7 @@ Index Identification: Note the index number displayed inside each bounding box. 
 Functionality Description: Provide a description of each element's functionality or intended user interaction. If an element's function is unclear, describe its appearance.
 Output Formatting: Your output should be a well-structured JSON object. Each key is an index number from the image, and its value is the associated element's functional description or visual description if the functionality is unknown.
 """
-    GPT4V_KEY = "d333f752996f4219ba6bc8f56a964980"
+    GPT4V_KEY = st.secrets['vision_key']
     headers = {
         "Content-Type": "application/json",
         "api-key": GPT4V_KEY,
@@ -31,7 +31,7 @@ Output Formatting: Your output should be a well-structured JSON object. Each key
         "model": "gpt-4-vision-preview",
         "messages": [
             {
-                "role": "system",
+                "role": "user",
                 "content": [
                     {
                         "type": "text",
